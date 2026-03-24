@@ -40,6 +40,11 @@
     color: #8b949e;
     font-size: 0.85rem;
   }
+  header .subtitle {
+    color: #58a6ff;
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
   .section {
     margin-bottom: 36px;
   }
@@ -90,11 +95,12 @@
 <div class="container">
   <header>
     <h1>📊 Financial Morning Dashboard</h1>
-    <p class="meta">Dernière mise à jour : mardi 24 mars 2026 à 22:44</p>
+    <p class="meta">Dernière mise à jour : mardi 24 mars 2026 à 23:03</p>
+    <p class="subtitle">Stratégie DCA Long Terme • Analyse des points d'entrée</p>
   </header>
 
   <div class="section">
-    <div class="section-title">🌡️ Sentiment Global du Marché</div>
+    <div class="section-title">🌍 Tendance de Fond du Marché</div>
     <div class="sentiment-card">
       
 <svg viewBox="0 0 300 170" style="max-width:300px;margin:0 auto;display:block">
@@ -108,14 +114,14 @@
     </linearGradient>
   </defs>
   <path d="M 30 130 A 120 120 0 0 1 270 130" fill="none" stroke="#21262d" stroke-width="20" stroke-linecap="round"/>
-  <path d="M 30 130 A 120 120 0 0 1 270 130" fill="none" stroke="url(#gaugeGrad)" stroke-width="20" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="150.8" style="transition:stroke-dashoffset 1s ease"/>
-  <circle cx="180.90169943749476" cy="34.89434837048465" r="8" fill="#56d364" stroke="#0d1117" stroke-width="3"/>
-  <text x="150" y="115" text-anchor="middle" fill="#56d364" font-size="36" font-weight="700">+20</text>
+  <path d="M 30 130 A 120 120 0 0 1 270 130" fill="none" stroke="url(#gaugeGrad)" stroke-width="20" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="131.95" style="transition:stroke-dashoffset 1s ease"/>
+  <circle cx="195.39904997395467" cy="40.89934758116323" r="8" fill="#56d364" stroke="#0d1117" stroke-width="3"/>
+  <text x="150" y="115" text-anchor="middle" fill="#56d364" font-size="36" font-weight="700">+30</text>
   <text x="150" y="145" text-anchor="middle" fill="#8b949e" font-size="14">Neutre</text>
   <text x="30" y="160" text-anchor="middle" fill="#8b949e" font-size="10">-100</text>
   <text x="270" y="160" text-anchor="middle" fill="#8b949e" font-size="10">+100</text>
 </svg>
-      <p class="sentiment-explanation">Les marchés montrent une certaine volatilité en raison des tensions géopolitiques, notamment la guerre en Iran, mais des signes d'espoir émergent avec des discussions de cessez-le-feu. Les investisseurs semblent prudents, mais il y a des opportunités dans certains secteurs, notamment la technologie et les cryptomonnaies.</p>
+      <p class="sentiment-explanation">Cette semaine, les marchés montrent une certaine volatilité en raison des tensions géopolitiques, notamment la guerre en Iran, qui affecte les prix du pétrole et l'inflation. Cependant, des nouvelles positives concernant des discussions de paix et des investissements dans des secteurs clés, comme l'IA et l'énergie, apportent un certain soutien. Ce score reflète un climat incertain, ce qui pourrait influencer les décisions d'entrée DCA.</p>
     </div>
   </div>
 
@@ -125,148 +131,250 @@
   </div>
 
   <div class="section">
-    <div class="section-title">💼 Mon Portfolio</div>
+    <div class="section-title">💼 Mon Portfolio — Points d'Entrée</div>
     <div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SP500</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">S&P 500</span>
+        <span style="color:#8b949e;font-size:0.9rem">S&P 500</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">2396.92EUR€</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">2396.92EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
         <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">Le S&P 500 a montré une certaine résilience malgré les tensions géopolitiques. Les discussions autour d'un cessez-le-feu en Iran pourraient apporter un soutien aux marchés boursiers. En tant qu'investisseur DCA, il est préférable de conserver cette position à long terme.</p>
+    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">⚪ Neutre</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Le S&P 500 a montré une certaine résilience malgré les tensions géopolitiques. Les investisseurs devraient continuer à suivre les développements, mais il n'y a pas de signal immédiat pour renforcer ou réduire la position.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Le S&P 500 reste un bon choix pour un investissement à long terme, avec une tendance historique à la hausse et une diversification sectorielle.</p>
+    </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SX5E</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">STOXX 600</span>
+        <span style="color:#8b949e;font-size:0.9rem">STOXX 600</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">1200.94EUR€</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1200.94EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
         <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">Le STOXX 600 est affecté par les mêmes dynamiques que le S&P 500, avec des perspectives de stabilisation en Europe. Les investisseurs devraient continuer à maintenir cette position dans le cadre d'une stratégie DCA.</p>
+    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">⚪ Neutre</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Le STOXX 600 est affecté par les incertitudes économiques en Europe, mais il n'y a pas de mouvements significatifs qui justifient un ajustement immédiat.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">L'indice offre une exposition diversifiée aux marchés européens, ce qui est bénéfique pour un investissement à long terme.</p>
+    </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">NDX</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Nasdaq 100</span>
+        <span style="color:#8b949e;font-size:0.9rem">Nasdaq 100</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">1122.61EUR€</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1122.61EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
-        <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
+        <span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">SURVEILLER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">Le Nasdaq 100 pourrait bénéficier des développements technologiques et des discussions autour de l'IA, même si les tensions géopolitiques persistent. La position DCA reste appropriée.</p>
+    <div style="margin-bottom:12px"><span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟡 Attendre</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Le Nasdaq 100 est volatile, avec des mouvements récents influencés par des nouvelles technologiques et économiques. Il pourrait être judicieux d'attendre avant de renforcer la position.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Le Nasdaq 100 a un potentiel de croissance à long terme, soutenu par l'innovation technologique et la demande croissante pour les services numériques.</p>
+    </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">TOPIX</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Japon Topix</span>
+        <span style="color:#8b949e;font-size:0.9rem">Japon Topix</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">416.88EUR€</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">416.88EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
         <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">Le marché japonais est influencé par les tendances globales, mais reste relativement stable. La stratégie DCA est toujours valable dans ce contexte.</p>
+    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">⚪ Neutre</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Le Topix est relativement stable, sans nouvelles significatives qui justifient un changement de stratégie d'investissement.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Le marché japonais présente des opportunités à long terme, notamment avec des réformes économiques en cours.</p>
+    </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">GOLD</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Or</span>
+        <span style="color:#8b949e;font-size:0.9rem">Or</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">465EUR€</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">465EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
-        <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#f85149;font-size:0.8rem;font-weight:500">● haute</span>
+        <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">L'or a mis fin à sa série de baisses, ce qui pourrait signaler un retournement. Cependant, la volatilité des marchés reste élevée, et il est prudent de conserver cette position pour le moment.</p>
-    <div style="margin-top:10px"><span style="color:#8b949e;font-size:0.75rem;font-weight:600">📎 News liées (cliquez pour lire) :</span><br style="margin-bottom:4px"><a href="https://www.bloomberg.com/news/articles/2026-03-23/gold-steadies-as-investors-weigh-us-pullback-from-iran-strikes" target="_blank" rel="noopener" style="color:#58a6ff;font-size:0.75rem;background:#21262d;padding:3px 8px;border-radius:4px;display:inline-block;margin:2px;text-decoration:none;border:1px solid #30363d">📰 Gold Snaps Nine-Day Losing Streak on Hopes of War Deescalation ↗</a></div>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">L'or a récemment rebondi après une série de baisses, ce qui en fait un bon point d'entrée pour renforcer la position, surtout en période d'incertitude économique.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">L'or est traditionnellement considéré comme une valeur refuge, et sa demande pourrait augmenter en période de crise économique.</p>
+    </div>
+    
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SILVER</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Argent</span>
+        <span style="color:#8b949e;font-size:0.9rem">Argent</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">410EUR€</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">410EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
-        <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#f85149;font-size:0.8rem;font-weight:500">● haute</span>
+        <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">L'argent suit généralement les tendances de l'or, et avec l'optimisme croissant autour de la désescalade, il est judicieux de conserver cette position.</p>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">L'argent suit une tendance similaire à celle de l'or, avec des opportunités d'achat à des prix réduits. C'est un bon moment pour renforcer la position.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">L'argent a des applications industrielles croissantes, ce qui pourrait soutenir sa demande à long terme.</p>
+    </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">BTC</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Bitcoin</span>
+        <span style="color:#8b949e;font-size:0.9rem">Bitcoin</span>
         <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">1025EUR€</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1025EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
         <span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">SURVEILLER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">Le Bitcoin a montré une légère hausse suite à des nouvelles de cessez-le-feu, mais la volatilité reste élevée. Il est conseillé de surveiller cette position de près en raison des fluctuations potentielles.</p>
-    <div style="margin-top:10px"><span style="color:#8b949e;font-size:0.75rem;font-weight:600">📎 News liées (cliquez pour lire) :</span><br style="margin-bottom:4px"><a href="https://www.coindesk.com/markets/2026/03/24/bitcoin-jolted-modestly-higher-on-iran-ceasefire-report-oil-tumbles-4" target="_blank" rel="noopener" style="color:#58a6ff;font-size:0.75rem;background:#21262d;padding:3px 8px;border-radius:4px;display:inline-block;margin:2px;text-decoration:none;border:1px solid #30363d">📰 Bitcoin jolted modestly higher on Iran ceasefire report; oil tumbles 4% ↗</a></div>
-  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
-        <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SOL</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Solana</span>
-        <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">75.56EUR€</span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
-        <span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">SURVEILLER</span>
-      </div>
+    <div style="margin-bottom:12px"><span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟡 Attendre</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Bitcoin a connu une hausse récente, mais la volatilité reste élevée. Il serait prudent d'attendre avant de renforcer la position.</p>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">Solana pourrait être affecté par les mouvements du Bitcoin et les développements dans le secteur des cryptomonnaies. Il est prudent de surveiller cette position pour des ajustements futurs.</p>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Bitcoin continue d'être un actif prometteur à long terme, avec un potentiel de croissance soutenu par l'adoption croissante des cryptomonnaies.</p>
+    </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
-        <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">GOOG</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Alphabet</span>
-        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;margin-left:8px;font-size:0.85rem;font-weight:600">10EUR€</span>
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SOL</span>
+        <span style="color:#8b949e;font-size:0.9rem">Solana</span>
+        <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">75.56EUR€</span>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
+        <span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">SURVEILLER</span>
+      </div>
+    </div>
+    <div style="margin-bottom:12px"><span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟡 Attendre</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Solana est affecté par la volatilité du marché des cryptomonnaies. Il est conseillé de surveiller les développements avant de prendre une décision.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Solana a un potentiel de croissance à long terme, soutenu par son utilisation dans des applications décentralisées.</p>
+    </div>
+    
+  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">GOOG</span>
+        <span style="color:#8b949e;font-size:0.9rem">Alphabet</span>
+        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">10EUR€</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
         <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:8px 0;font-size:0.88rem;line-height:1.5">Alphabet reste une position solide à long terme, et il n'y a pas de nouvelles immédiates qui justifient un changement. La stratégie DCA est appropriée.</p>
+    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">⚪ Neutre</span></div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Alphabet reste stable sans nouvelles significatives. Il n'y a pas de raison de modifier la position actuelle.</p>
+    </div>
+    <div style="background:#0d1117;border-radius:8px;padding:12px;margin-bottom:8px">
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:4px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.5">Alphabet est bien positionné pour bénéficier de la croissance continue dans le secteur technologique.</p>
+    </div>
     
   </div>
   </div>
 
   <div class="section">
     <div class="section-title">🔭 Opportunités du Marché</div>
-    <p style="color:#8b949e;font-size:0.9rem">Aucune opportunité identifiée.</p>
+    <div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div>
+        <span style="color:#d2a8ff;font-weight:700;font-size:1.1rem">AAPL</span>
+        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Apple Inc.</span>
+        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
+      </div>
+      <span style="color:#3fb950;font-weight:600">Risque: faible</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="background:#1f3a5f;color:#58a6ff;padding:4px 10px;border-radius:8px;font-size:0.8rem">Baisse = bon point d'entree DCA</span>
+      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">⏱ court terme (1-4 semaines)</span>
+    </div>
+    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Baisse = bon point d'entree DCA</p>
+    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.5">Apple a récemment connu une baisse de son action, offrant une opportunité d'achat à un prix réduit. Avec des fondamentaux solides et une forte demande pour ses produits, c'est un bon moment pour envisager un renforcement.</p>
+  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div>
+        <span style="color:#d2a8ff;font-weight:700;font-size:1.1rem">MSFT</span>
+        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Microsoft Corporation</span>
+        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
+      </div>
+      <span style="color:#3fb950;font-weight:600">Risque: faible</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="background:#1f3a5f;color:#58a6ff;padding:4px 10px;border-radius:8px;font-size:0.8rem">Baisse = bon point d'entree DCA</span>
+      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">⏱ court terme (1-4 semaines)</span>
+    </div>
+    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Baisse = bon point d'entree DCA</p>
+    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.5">Microsoft a également vu une correction de son action, ce qui pourrait représenter une opportunité d'achat. L'entreprise continue d'innover et de croître dans le secteur technologique.</p>
+  </div>
   </div>
 
   <div class="section">
@@ -274,32 +382,32 @@
     <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.coindesk.com/markets/2026/03/24/bitcoin-jolted-modestly-higher-on-iran-ceasefire-report-oil-tumbles-4" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Bitcoin jolted modestly higher on Iran ceasefire report; oil tumbles 4%</a>
+        <a href="https://www.politico.com/news/2026/03/23/iran-war-oil-markets-damage-00839780" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">US-Iran war damaged global oil markets more than Russia-Ukraine war, Chevron CEO says</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-        <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
+        <span style="background:#8b949e22;color:#8b949e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Global</span>
         <span style="background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">HAUTE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Le prix du Bitcoin a connu une légère hausse suite à des rapports indiquant qu'un cessez-le-feu d'un mois pourrait être annoncé concernant le conflit en Iran. Cette nouvelle a également entraîné une chute de 4% des prix du pétrole, ce qui pourrait indiquer une stabilisation des marchés énergétiques. Les investisseurs réagissent à ces développements avec prudence, mais l'optimisme autour d'une résolution pacifique pourrait soutenir les actifs risqués comme le Bitcoin. Les implications pour les investisseurs sont significatives, car une résolution pourrait renforcer la confiance dans les marchés, tandis que l'incertitude géopolitique continue de peser sur les décisions d'investissement à court terme.</p>
-    <a href="https://www.coindesk.com/markets/2026/03/24/bitcoin-jolted-modestly-higher-on-iran-ceasefire-report-oil-tumbles-4" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240;transition:background 0.2s">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Le PDG de Chevron a déclaré que la guerre en Iran a eu un impact plus important sur les marchés pétroliers mondiaux que le conflit Russie-Ukraine. Il a souligné que la réouverture du détroit d'Hormuz est cruciale pour la stabilisation des chaînes d'approvisionnement. Les tensions géopolitiques continuent de peser sur les marchés, avec des implications pour l'inflation et les prix de l'énergie. Les investisseurs doivent surveiller de près l'évolution de la situation, car elle pourrait influencer les décisions d'investissement à court terme.</p>
+    <a href="https://www.politico.com/news/2026/03/23/iran-war-oil-markets-damage-00839780" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.bloomberg.com/news/articles/2026-03-23/gold-steadies-as-investors-weigh-us-pullback-from-iran-strikes" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Gold Snaps Nine-Day Losing Streak on Hopes of War Deescalation</a>
+        <a href="https://www.coindesk.com/markets/2026/03/23/bitcoin-surges-above-usd71-000-as-trump-postpones-iran-strikes-for-five-days" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Bitcoin price news: BTC surges 5% to $71,000 as Trump postpones Iran escalation</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-        <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
+        <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MOYENNE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Le prix de l'or a enfin mis fin à une série de neuf jours de baisses, soutenu par des espoirs de désescalade du conflit en Iran. Les investisseurs, qui avaient précédemment cherché refuge dans l'or en raison des incertitudes géopolitiques, pourraient maintenant réévaluer leurs positions. Cette dynamique pourrait signaler un retournement potentiel pour l'or, surtout si les tensions continuent de diminuer. Les perspectives à court terme pour l'or semblent plus optimistes, mais les investisseurs doivent rester vigilants face à la volatilité persistante des marchés.</p>
-    <a href="https://www.bloomberg.com/news/articles/2026-03-23/gold-steadies-as-investors-weigh-us-pullback-from-iran-strikes" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240;transition:background 0.2s">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Le prix du Bitcoin a augmenté de 5% pour atteindre 71 000 $ après que le président Trump a annoncé un report des escalades militaires en Iran. Cette annonce a apporté un certain soulagement aux marchés, permettant aux actifs numériques de rebondir. Les investisseurs semblent optimistes quant à la possibilité d'une résolution pacifique, ce qui pourrait soutenir les prix des cryptomonnaies à court terme. Les fluctuations de Bitcoin sont souvent influencées par des nouvelles géopolitiques, ce qui souligne l'importance de suivre ces développements.</p>
+    <a href="https://www.coindesk.com/markets/2026/03/23/bitcoin-surges-above-usd71-000-as-trump-postpones-iran-strikes-for-five-days" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
   </div>
   </div>
 
   <footer>
-    Généré automatiquement par n8n + GPT-4 • Données à titre informatif uniquement • Ne constitue pas un conseil en investissement
+    Généré automatiquement par n8n + GPT-4o-mini • Stratégie DCA Long Terme • Ne constitue pas un conseil en investissement
   </footer>
 </div>
 </body>
