@@ -10,35 +10,63 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0d1117; color: #e6edf3; line-height: 1.6; min-height: 100vh; }
-  .container { max-width: 1100px; margin: 0 auto; padding: 24px 16px; }
-  header { text-align: center; padding: 32px 0 24px; border-bottom: 1px solid #21262d; margin-bottom: 32px; }
-  header h1 { font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, #58a6ff, #d2a8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; }
-  header .meta { color: #8b949e; font-size: 0.85rem; }
-  header .subtitle { color: #58a6ff; font-size: 0.8rem; margin-top: 4px; }
-  .section { margin-bottom: 36px; }
-  .section-title { font-size: 1.2rem; font-weight: 700; color: #e6edf3; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid #21262d; display: flex; align-items: center; gap: 8px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+  header { text-align: center; padding: 28px 0 20px; border-bottom: 1px solid #21262d; }
+  header h1 { font-size: 1.6rem; font-weight: 800; background: linear-gradient(135deg, #58a6ff, #d2a8ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+  header .meta { color: #8b949e; font-size: 0.82rem; }
+  header .subtitle { color: #58a6ff; font-size: 0.78rem; margin-top: 4px; }
+
+  /* Navigation */
+  .nav { display: flex; gap: 0; border-bottom: 1px solid #21262d; background: #0d1117; position: sticky; top: 0; z-index: 100; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .nav-item { display: flex; align-items: center; gap: 6px; padding: 14px 18px; color: #8b949e; font-size: 0.82rem; font-weight: 600; cursor: pointer; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; user-select: none; }
+  .nav-item:hover { color: #e6edf3; background: #161b22; }
+  .nav-item.active { color: #58a6ff; border-bottom-color: #58a6ff; }
+  .nav-item svg { flex-shrink: 0; }
+  .nav-badge { background: #30363d; color: #8b949e; padding: 1px 7px; border-radius: 10px; font-size: 0.7rem; font-weight: 700; }
+  .nav-item.active .nav-badge { background: #1f3a5f; color: #58a6ff; }
+
+  /* Pages */
+  .page { display: none; padding: 24px 0; min-height: 60vh; }
+  .page.active { display: block; }
+  .page-title { font-size: 1.15rem; font-weight: 700; color: #e6edf3; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #21262d; display: flex; align-items: center; gap: 10px; }
+  .page-title svg { color: #58a6ff; }
+
+  footer { text-align: center; padding: 20px 0; border-top: 1px solid #21262d; color: #484f58; font-size: 0.7rem; margin-top: 12px; line-height: 1.5; }
   a:hover { opacity: 0.85; }
-  footer { text-align: center; padding: 24px 0; border-top: 1px solid #21262d; color: #484f58; font-size: 0.75rem; margin-top: 24px; }
-  @media (max-width: 640px) { .container { padding: 12px 10px; } header h1 { font-size: 1.3rem; } .section-title { font-size: 1rem; } }
+
+  @media (max-width: 640px) {
+    .container { padding: 0 10px; }
+    header h1 { font-size: 1.3rem; }
+    .nav-item { padding: 12px 12px; font-size: 0.75rem; }
+    .page-title { font-size: 1rem; }
+  }
 </style>
 </head>
 <body>
 <div class="container">
   <header>
     <h1>Financial Dashboard</h1>
-    <p class="meta">Dernière mise à jour : mercredi 25 mars 2026 à 12:03</p>
-    <p class="subtitle">Stratégie DCA Long Terme • Analyse des points d'entrée • Prix & VIX en temps réel</p>
+    <p class="meta">Dernière mise à jour : mercredi 25 mars 2026 à 15:53</p>
+    <p class="subtitle">Stratégie DCA Long Terme &bull; Analyse des points d'entrée &bull; Prix & VIX en temps réel</p>
   </header>
 
-  <div class="section">
-    <div class="section-title">⚡ Indice de la Peur — VIX</div>
+  <nav class="nav">
+    <div class="nav-item active" onclick="showPage('vix')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> VIX</div>
+    <div class="nav-item" onclick="showPage('alertes')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Alertes <span class="nav-badge">2</span></div>
+    <div class="nav-item" onclick="showPage('portfolio')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Portfolio <span class="nav-badge">9</span></div>
+    <div class="nav-item" onclick="showPage('opportunites')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg> Opportunités <span class="nav-badge">3</span></div>
+    <div class="nav-item" onclick="showPage('news')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><line x1="10" y1="6" x2="18" y2="6"></line><line x1="10" y1="10" x2="18" y2="10"></line><line x1="10" y1="14" x2="14" y2="14"></line></svg> News <span class="nav-badge">9</span></div>
+  </nav>
+
+  <div id="page-vix" class="page active">
+    <div class="page-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Indice de la Peur — VIX (CBOE Volatility Index)</div>
     <div style="background:#161b22;border:1px solid #30363d;border-radius:16px;padding:28px">
   <div style="text-align:center;margin-bottom:20px">
     <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:8px">
-      <span style="color:#d29922;font-size:3.5rem;font-weight:800;line-height:1">25.88</span>
+      <span style="color:#d29922;font-size:3.5rem;font-weight:800;line-height:1">25.22</span>
       <div style="text-align:left">
         <div style="color:#d29922;font-size:1.2rem;font-weight:700">Stress modéré</div>
-        <div style="color:#3fb950;font-size:0.85rem;font-weight:600">-3.97% aujourd'hui</div>
+        <div style="color:#3fb950;font-size:0.85rem;font-weight:600">-6.42% aujourd'hui</div>
       </div>
     </div>
   </div>
@@ -61,119 +89,115 @@
     </div>
   </div>
   <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:12px">
-    <div style="color:#8b949e;font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📖 Lecture du marché</div>
+    <div style="color:#8b949e;font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Lecture du marché</div>
     <p style="color:#e6edf3;font-size:0.88rem;line-height:1.6;margin:0">Les investisseurs commencent à s'inquiéter. La volatilité augmente, ce qui peut créer des opportunités d'achat pour les investisseurs long terme.</p>
   </div>
   <div style="background:#0d1117;border-radius:8px;padding:14px">
-    <div style="color:#58a6ff;font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">💡 Analyse pour votre stratégie DCA</div>
-    <p style="color:#c9d1d9;font-size:0.85rem;line-height:1.6;margin:0">Le VIX à 25.88 indique un stress modéré sur le marché, ce qui est significatif pour les investisseurs DCA à long terme. Historiquement, des niveaux de VIX autour de 25-30 sont souvent associés à des opportunités d'achat, car ils reflètent une certaine peur des investisseurs, ce qui peut conduire à des prix d'actifs sous-évalués. Pour un investisseur DCA, cela signifie qu'il pourrait être judicieux de renforcer ses positions dans des actifs qui ont récemment baissé, car acheter dans des périodes de volatilité peut améliorer le coût moyen d'achat. Les secteurs les plus impactés par ce niveau de volatilité incluent les technologies, l'énergie et les matières premières, où les fluctuations de prix peuvent être plus prononcées en période d'incertitude.</p>
+    <div style="color:#58a6ff;font-size:0.7rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Analyse pour votre stratégie DCA</div>
+    <p style="color:#c9d1d9;font-size:0.85rem;line-height:1.6;margin:0">Le VIX à 25.22 indique un niveau de stress modéré sur le marché, ce qui signifie que les investisseurs sont préoccupés par la volatilité à court terme, mais pas encore dans une phase de panique. Historiquement, des niveaux similaires ont été observés lors de périodes d'incertitude économique, comme lors de tensions géopolitiques ou de fluctuations importantes des marchés. Pour un investisseur DCA à long terme, cela peut représenter une opportunité d'achat, car les actifs peuvent être sous-évalués en raison de la peur ambiante. Les secteurs les plus impactés par ce niveau de volatilité incluent l'énergie, les technologies et les matières premières, où les fluctuations de prix peuvent être accentuées par des événements externes comme la guerre en Iran.</p>
   </div>
 </div>
+    <footer>Généré par n8n + GPT-4o-mini &bull; Prix : Yahoo Finance &bull; VIX : CBOE via Yahoo Finance &bull; News : NewsAPI, Investing.com, Bloomberg, Reuters, CoinDesk, CNBC, MarketWatch</footer>
   </div>
 
-  <div class="section">
-    <div class="section-title">🚨 Alertes Importantes</div>
+  <div id="page-alertes" class="page">
+    <div class="page-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Alertes Importantes</div>
     <div style="background:#2d2400;border-left:4px solid #d29922;border-radius:8px;padding:16px;margin-bottom:12px">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-      <span style="font-size:1.1rem">🟠</span>
-      <strong style="color:#e6edf3;font-size:0.95rem">Surveillance des marchés pétroliers</strong>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L15 14H1L8 1Z" stroke="#d29922" stroke-width="1.5" fill="none"/><line x1="8" y1="6" x2="8" y2="10" stroke="#d29922" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r="0.8" fill="#d29922"/></svg>
+      <strong style="color:#e6edf3;font-size:0.95rem">Tensions géopolitiques croissantes</strong>
       <span style="margin-left:auto;background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">IMPORTANT</span>
     </div>
-    <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Les marchés pétroliers sont sous pression en raison des tensions géopolitiques et des fluctuations des prix. Les investisseurs doivent surveiller les développements concernant la guerre en Iran, car cela pourrait avoir des implications significatives pour les prix du pétrole et les actions des entreprises énergétiques. Des mouvements de prix importants pourraient survenir dans les jours à venir.</p>
-    <p style="color:#58a6ff;margin:6px 0 0;font-size:0.8rem">Actif concerné : Pétrole</p>
-  </div><div style="background:#2d1214;border-left:4px solid #f85149;border-radius:8px;padding:16px;margin-bottom:12px">
+    <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Les tensions entre les États-Unis et l'Iran continuent d'affecter les marchés. Les investisseurs doivent surveiller de près les développements, car ils pourraient influencer les prix des actions et des matières premières. Une escalade des tensions pourrait entraîner une volatilité accrue sur les marchés.</p>
+    <p style="color:#58a6ff;margin:6px 0 0;font-size:0.8rem">Actif concerné : Global</p>
+  </div><div style="background:#2d2400;border-left:4px solid #d29922;border-radius:8px;padding:16px;margin-bottom:12px">
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-      <span style="font-size:1.1rem">🔴</span>
-      <strong style="color:#e6edf3;font-size:0.95rem">Risque de récession croissant</strong>
-      <span style="margin-left:auto;background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">CRITIQUE</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1L15 14H1L8 1Z" stroke="#d29922" stroke-width="1.5" fill="none"/><line x1="8" y1="6" x2="8" y2="10" stroke="#d29922" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="12" r="0.8" fill="#d29922"/></svg>
+      <strong style="color:#e6edf3;font-size:0.95rem">Volatilité accrue sur les marchés</strong>
+      <span style="margin-left:auto;background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">IMPORTANT</span>
     </div>
-    <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Les économistes augmentent leurs prévisions de récession, ce qui pourrait avoir des implications significatives pour les marchés boursiers. Les investisseurs doivent être prudents et surveiller les indicateurs économiques clés, car une récession pourrait entraîner une volatilité accrue et des baisses de prix. Des mouvements de prix importants pourraient survenir dans les jours à venir.</p>
-    <p style="color:#58a6ff;margin:6px 0 0;font-size:0.8rem">Actif concerné : Marchés boursiers</p>
+    <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le VIX élevé indique une volatilité accrue sur les marchés. Les investisseurs doivent être prudents et envisager d'attendre avant de prendre de nouvelles positions. Les fluctuations des prix pourraient offrir des opportunités d'achat, mais il est essentiel de surveiller les développements économiques et géopolitiques.</p>
+    <p style="color:#58a6ff;margin:6px 0 0;font-size:0.8rem">Actif concerné : Global</p>
   </div>
+    <footer>Généré par n8n + GPT-4o-mini &bull; Prix : Yahoo Finance &bull; VIX : CBOE via Yahoo Finance &bull; News : NewsAPI, Investing.com, Bloomberg, Reuters, CoinDesk, CNBC, MarketWatch</footer>
   </div>
 
-  <div class="section">
-    <div class="section-title">💼 Mon Portfolio — Prix & Points d'Entrée</div>
+  <div id="page-portfolio" class="page">
+    <div class="page-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg> Mon Portfolio — Prix & Points d'Entrée</div>
     <div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SP500</span>
         <span style="color:#8b949e;font-size:0.9rem">S&P 500</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">2396.92EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">2396.92EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#f85149;font-size:0.8rem;font-weight:500">● haute</span>
+        <span style="color:#f85149;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#f85149"/></svg>haute</span>
         <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">6556.37 USD</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">6617.5 USD</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+0.93%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-1.03%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-0.11%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-5.61%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-4.73%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#3fb950"/></svg> Bon point d'entree</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le S&P 500 a connu une légère baisse de 1.03% cette semaine et de 5.61% ce mois-ci, ce qui, combiné à un VIX élevé, en fait un bon point d'entrée pour renforcer cette position. Les volumes d'échange sont restés stables, mais le sentiment des investisseurs est mitigé, ce qui pourrait offrir une opportunité d'achat. Les niveaux de support se situent autour de 6500 USD, tandis que la résistance est à 6700 USD. Les nouvelles économiques récentes, notamment les craintes de récession, pourraient également influencer les performances à court terme. En conclusion, c'est un moment propice pour renforcer cette position dans le cadre d'une stratégie DCA.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le S&P 500 a connu une légère hausse aujourd'hui, mais reste en baisse de 4.73% sur le mois. Le VIX élevé indique une volatilité accrue, ce qui pourrait offrir une opportunité d'achat. Les nouvelles concernant les tensions en Iran et les perspectives de bénéfices des entreprises américaines pourraient influencer le marché. Les niveaux techniques montrent un support autour de 6500 USD, ce qui pourrait être un bon point d'entrée. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, le S&P 500 semble sous-évalué, ce qui renforce l'argument d'achat.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le S&P 500 reste un pilier solide pour un portefeuille diversifié, avec une tendance haussière sur 5-10 ans. Les entreprises qui composent cet indice ont des avantages compétitifs significatifs et sont bien positionnées pour bénéficier de la croissance économique. Les risques incluent une volatilité accrue due à des événements géopolitiques, mais la diversification de l'indice atténue ces risques. L'objectif de croissance à long terme reste positif, avec des prévisions de rendements solides.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le S&P 500 reste un indicateur clé de la santé économique américaine. Les entreprises qui le composent continuent de montrer des signes de croissance, malgré les tensions géopolitiques. Les avantages compétitifs des entreprises américaines, combinés à une économie résiliente, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, le S&P 500 devrait continuer à jouer un rôle central.</p>
     </div>
-    
+    <div style="margin-top:10px"><span style="color:#8b949e;font-size:0.75rem;font-weight:600">Sources :</span><br><a href="https://www.bloomberg.com/news/articles/2026-03-25/morgan-stanley-s-wilson-sees-s-p-profit-boom-despite-iran-war" target="_blank" rel="noopener" style="color:#58a6ff;font-size:0.75rem;background:#21262d;padding:3px 8px;border-radius:4px;display:inline-block;margin:2px;text-decoration:none;border:1px solid #30363d">Morgan Stanley’s Wilson Sees S&P Profit Boom Despite Iran War &#8599;</a></div>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SX5E</span>
         <span style="color:#8b949e;font-size:0.9rem">STOXX 600</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1200.94EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1200.94EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#f85149;font-size:0.8rem;font-weight:500">● haute</span>
+        <span style="color:#f85149;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#f85149"/></svg>haute</span>
         <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">284.2 EUR</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">284.46 EUR</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.43%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.52%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-1.72%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-1.63%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-7.04%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-6.96%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#3fb950"/></svg> Bon point d'entree</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le STOXX 600 a enregistré une baisse de 1.72% cette semaine et de 7.04% ce mois-ci, ce qui, associé à un VIX élevé, en fait un bon point d'entrée pour renforcer cette position. Les nouvelles économiques en Europe, notamment les préoccupations liées à l'inflation et à la guerre en Iran, pourraient influencer les performances à court terme. Les niveaux de support se situent autour de 280 EUR, tandis que la résistance est à 290 EUR. Le sentiment des investisseurs est prudent, mais cela pourrait offrir une opportunité d'achat. En conclusion, c'est un moment propice pour renforcer cette position dans le cadre d'une stratégie DCA.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le STOXX 600 a montré une légère reprise aujourd'hui, mais reste en baisse de 6.96% sur le mois. Le VIX élevé suggère que les investisseurs pourraient être trop craintifs, ce qui pourrait offrir une opportunité d'achat. Les nouvelles concernant les tensions en Iran et leur impact sur l'économie européenne sont à surveiller. Les niveaux techniques montrent un support autour de 280 EUR, ce qui pourrait être un bon point d'entrée. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, le STOXX 600 semble sous-évalué.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le STOXX 600 représente une exposition diversifiée aux actions européennes, avec des entreprises bien établies dans divers secteurs. Les perspectives de croissance restent positives, bien que des risques macroéconomiques subsistent. Les entreprises de ce secteur sont bien positionnées pour bénéficier de la reprise économique post-pandémie. L'objectif de croissance à long terme reste solide, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le STOXX 600 représente une exposition diversifiée à l'économie européenne. Les entreprises qui le composent sont bien positionnées pour bénéficier de la reprise économique post-COVID. Les avantages compétitifs des entreprises européennes, combinés à une économie en croissance, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, le STOXX 600 devrait continuer à jouer un rôle central.</p>
     </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
@@ -182,39 +206,36 @@
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">NDX</span>
         <span style="color:#8b949e;font-size:0.9rem">Nasdaq 100</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1122.61EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1122.61EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#f85149;font-size:0.8rem;font-weight:500">● haute</span>
+        <span style="color:#f85149;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#f85149"/></svg>haute</span>
         <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">583.98 USD</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">591.11 USD</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.22%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-1.84%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-0.64%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-5.3%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-4.15%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#3fb950"/></svg> Bon point d'entree</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le Nasdaq 100 a connu une baisse de 1.84% cette semaine et de 5.3% ce mois-ci, ce qui, associé à un VIX élevé, en fait un bon point d'entrée pour renforcer cette position. Les volumes d'échange sont restés élevés, indiquant un intérêt soutenu des investisseurs. Les niveaux de support se situent autour de 570 USD, tandis que la résistance est à 600 USD. Les nouvelles récentes concernant les entreprises technologiques pourraient également influencer les performances à court terme. En conclusion, c'est un moment propice pour renforcer cette position dans le cadre d'une stratégie DCA.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le Nasdaq 100 a connu une légère hausse aujourd'hui, mais reste en baisse de 4.15% sur le mois. Le VIX élevé indique une volatilité accrue, ce qui pourrait offrir une opportunité d'achat. Les nouvelles concernant les entreprises technologiques et leur résilience face aux tensions géopolitiques sont à surveiller. Les niveaux techniques montrent un support autour de 580 USD, ce qui pourrait être un bon point d'entrée. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, le Nasdaq 100 semble sous-évalué.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le Nasdaq 100 est un indicateur clé de la performance des entreprises technologiques, qui continuent de croître à un rythme rapide. Les entreprises de ce secteur ont des avantages compétitifs significatifs et sont bien positionnées pour bénéficier de la transformation numérique. Les risques incluent une volatilité accrue due à des événements géopolitiques, mais la tendance à long terme reste positive. L'objectif de croissance à long terme reste solide, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le Nasdaq 100 représente une exposition aux entreprises technologiques les plus innovantes. Ces entreprises continuent de croître malgré les tensions géopolitiques. Les avantages compétitifs des entreprises technologiques, combinés à une économie numérique en expansion, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, le Nasdaq 100 devrait continuer à jouer un rôle central.</p>
     </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
@@ -223,18 +244,15 @@
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">TOPIX</span>
         <span style="color:#8b949e;font-size:0.9rem">Japon Topix</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">416.88EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">416.88EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
+        <span style="color:#d29922;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#d29922"/></svg>moyenne</span>
         <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">3836 JPY</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">3836 JPY</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
     <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
@@ -248,14 +266,14 @@
     <div style="color:#f85149;font-size:0.85rem;font-weight:700">-5.17%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#3fb950"/></svg> Bon point d'entree</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le TOPIX a enregistré une baisse de 1.82% cette semaine et de 5.17% ce mois-ci, ce qui, associé à un VIX élevé, en fait un bon point d'entrée pour renforcer cette position. Les volumes d'échange sont restés stables, mais le sentiment des investisseurs est mitigé. Les niveaux de support se situent autour de 3800 JPY, tandis que la résistance est à 3900 JPY. Les nouvelles économiques au Japon pourraient également influencer les performances à court terme. En conclusion, c'est un moment propice pour renforcer cette position dans le cadre d'une stratégie DCA.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le TOPIX est resté stable aujourd'hui, mais a baissé de 5.17% sur le mois. Le VIX élevé indique une volatilité accrue, ce qui pourrait offrir une opportunité d'achat. Les nouvelles concernant l'économie japonaise et son impact sur les marchés sont à surveiller. Les niveaux techniques montrent un support autour de 3800 JPY, ce qui pourrait être un bon point d'entrée. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, le TOPIX semble sous-évalué.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le TOPIX représente une exposition diversifiée aux actions japonaises, avec des entreprises bien établies dans divers secteurs. Les perspectives de croissance restent positives, bien que des risques macroéconomiques subsistent. Les entreprises de ce secteur sont bien positionnées pour bénéficier de la reprise économique post-pandémie. L'objectif de croissance à long terme reste solide, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le TOPIX représente une exposition à l'économie japonaise, qui montre des signes de reprise. Les entreprises qui le composent sont bien positionnées pour bénéficier de la reprise économique post-COVID. Les avantages compétitifs des entreprises japonaises, combinés à une économie en croissance, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, le TOPIX devrait continuer à jouer un rôle central.</p>
     </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
@@ -264,80 +282,74 @@
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">GOLD</span>
         <span style="color:#8b949e;font-size:0.9rem">Or</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">465EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">465EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#f85149;font-size:0.8rem;font-weight:500">● haute</span>
+        <span style="color:#f85149;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#f85149"/></svg>haute</span>
         <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">404.13 USD</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">420.65 USD</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+4.09%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-9.13%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-5.42%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-14.64%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-11.15%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#3fb950"/></svg> Bon point d'entree</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">L'or a connu une baisse significative de 9.13% cette semaine et de 14.64% ce mois-ci, ce qui, associé à un VIX élevé, en fait un bon point d'entrée pour renforcer cette position. Les volumes d'échange ont augmenté, indiquant un intérêt accru des investisseurs. Les niveaux de support se situent autour de 400 USD, tandis que la résistance est à 420 USD. Les nouvelles économiques et géopolitiques pourraient également influencer les performances à court terme. En conclusion, c'est un moment propice pour renforcer cette position dans le cadre d'une stratégie DCA.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">L'or a connu une forte hausse aujourd'hui, mais reste en baisse de 11.15% sur le mois. Le VIX élevé indique une volatilité accrue, ce qui pourrait offrir une opportunité d'achat. Les nouvelles concernant les tensions en Iran et leur impact sur les prix de l'or sont à surveiller. Les niveaux techniques montrent un support autour de 400 USD, ce qui pourrait être un bon point d'entrée. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, l'or semble sous-évalué.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, l'or reste un actif refuge en période d'incertitude économique et géopolitique. Les perspectives de croissance restent positives, bien que des risques macroéconomiques subsistent. L'or est souvent considéré comme une couverture contre l'inflation et la volatilité des marchés. L'objectif de croissance à long terme reste solide, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, l'or reste un actif refuge en période d'incertitude économique. Les tensions géopolitiques et l'inflation soutiennent la demande pour l'or. Les avantages compétitifs de l'or en tant que valeur refuge, combinés à une économie mondiale incertaine, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, l'or devrait continuer à jouer un rôle central.</p>
     </div>
-    
+    <div style="margin-top:10px"><span style="color:#8b949e;font-size:0.75rem;font-weight:600">Sources :</span><br><a href="https://www.bloomberg.com/news/articles/2026-03-24/gold-holds-gain-after-reports-of-us-negotiations-to-end-iran-war" target="_blank" rel="noopener" style="color:#58a6ff;font-size:0.75rem;background:#21262d;padding:3px 8px;border-radius:4px;display:inline-block;margin:2px;text-decoration:none;border:1px solid #30363d">Gold Extends Gains as Traders Gauge Viability of Ceasefire Talks &#8599;</a></div>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px">
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SILVER</span>
         <span style="color:#8b949e;font-size:0.9rem">Argent</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">410EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">410EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#f85149;font-size:0.8rem;font-weight:500">● haute</span>
+        <span style="color:#f85149;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#f85149"/></svg>haute</span>
         <span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">RENFORCER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">62.95 USD</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">66.37 USD</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+5.43%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-8.37%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-3.39%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-21.35%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-17.08%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟢 Bon point d'entree</span></div>
+    <div style="margin-bottom:12px"><span style="background:#238636;color:#3fb950;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#3fb950"/></svg> Bon point d'entree</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">L'argent a connu une baisse significative de 8.37% cette semaine et de 21.35% ce mois-ci, ce qui, associé à un VIX élevé, en fait un bon point d'entrée pour renforcer cette position. Les volumes d'échange ont augmenté, indiquant un intérêt accru des investisseurs. Les niveaux de support se situent autour de 60 USD, tandis que la résistance est à 65 USD. Les nouvelles économiques et géopolitiques pourraient également influencer les performances à court terme. En conclusion, c'est un moment propice pour renforcer cette position dans le cadre d'une stratégie DCA.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">L'argent a connu une forte hausse aujourd'hui, mais reste en baisse de 17.08% sur le mois. Le VIX élevé indique une volatilité accrue, ce qui pourrait offrir une opportunité d'achat. Les nouvelles concernant les tensions en Iran et leur impact sur les prix de l'argent sont à surveiller. Les niveaux techniques montrent un support autour de 60 USD, ce qui pourrait être un bon point d'entrée. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, l'argent semble sous-évalué.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, l'argent est également considéré comme un actif refuge et a des applications industrielles croissantes. Les perspectives de croissance restent positives, bien que des risques macroéconomiques subsistent. L'argent est souvent considéré comme une couverture contre l'inflation et la volatilité des marchés. L'objectif de croissance à long terme reste solide, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, l'argent est également considéré comme un actif refuge, bien qu'il soit plus volatil que l'or. Les tensions géopolitiques et l'inflation soutiennent la demande pour l'argent. Les avantages compétitifs de l'argent, combinés à une économie mondiale incertaine, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, l'argent devrait continuer à jouer un rôle central.</p>
     </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
@@ -346,39 +358,36 @@
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">BTC</span>
         <span style="color:#8b949e;font-size:0.9rem">Bitcoin</span>
         <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1025EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">1025EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
+        <span style="color:#d29922;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#d29922"/></svg>moyenne</span>
         <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">71531.13 USD</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">71327.63 USD</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.44%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.15%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.43%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.14%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+4.96%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">⚪ Neutre</span></div>
+    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#8b949e"/></svg> Neutre</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le Bitcoin a enregistré une légère hausse de 1.44% aujourd'hui et de 1.43% cette semaine, ce qui indique une certaine stabilité dans un marché volatile. Les volumes d'échange sont restés élevés, et le sentiment des investisseurs est optimiste. Les niveaux de support se situent autour de 70,000 USD, tandis que la résistance est à 72,000 USD. Les nouvelles récentes concernant les négociations de paix en Iran pourraient également influencer les performances à court terme. En conclusion, il est préférable de conserver cette position pour le moment.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Le Bitcoin a montré une légère hausse aujourd'hui et sur la semaine, ce qui indique une certaine stabilité. Le VIX élevé suggère une volatilité accrue, mais le Bitcoin semble résilient face aux tensions géopolitiques. Les nouvelles concernant les développements dans le secteur des cryptomonnaies et leur impact sur les prix sont à surveiller. Les niveaux techniques montrent un support autour de 70 000 USD, ce qui pourrait être un bon point d'entrée pour de nouveaux investisseurs. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, le Bitcoin semble stable.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le Bitcoin continue d'être considéré comme une réserve de valeur et un actif de diversification. Les perspectives de croissance restent positives, bien que des risques de volatilité subsistent. Le Bitcoin est souvent considéré comme une couverture contre l'inflation et la dévaluation des monnaies. L'objectif de croissance à long terme reste solide, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, le Bitcoin continue d'être perçu comme une réserve de valeur et un actif numérique innovant. Les avantages compétitifs du Bitcoin, combinés à une adoption croissante, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, le Bitcoin devrait continuer à jouer un rôle central.</p>
     </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
@@ -387,39 +396,36 @@
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">SOL</span>
         <span style="color:#8b949e;font-size:0.9rem">Solana</span>
         <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">75.56EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">75.56EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#8b949e;font-size:0.8rem;font-weight:500">● faible</span>
+        <span style="color:#8b949e;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#8b949e"/></svg>faible</span>
         <span style="background:#1f3a5f;color:#58a6ff;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">CONSERVER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">92.59 USD</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">92.13 USD</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.95%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+1.44%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+3.05%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+2.53%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+4.79%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">⚪ Neutre</span></div>
+    <div style="margin-bottom:12px"><span style="background:#21262d;color:#8b949e;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#8b949e"/></svg> Neutre</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Solana a enregistré une hausse de 1.95% aujourd'hui et de 3.05% cette semaine, ce qui indique une certaine stabilité dans un marché volatile. Les volumes d'échange sont restés élevés, et le sentiment des investisseurs est optimiste. Les niveaux de support se situent autour de 90 USD, tandis que la résistance est à 95 USD. Les nouvelles récentes concernant les développements dans l'écosystème Solana pourraient également influencer les performances à court terme. En conclusion, il est préférable de conserver cette position pour le moment.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Solana a montré une légère hausse aujourd'hui et sur la semaine, ce qui indique une certaine stabilité. Le VIX élevé suggère une volatilité accrue, mais Solana semble résilient face aux tensions géopolitiques. Les nouvelles concernant les développements dans le secteur des cryptomonnaies et leur impact sur les prix sont à surveiller. Les niveaux techniques montrent un support autour de 90 USD, ce qui pourrait être un bon point d'entrée pour de nouveaux investisseurs. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, Solana semble stable.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, Solana est bien positionnée pour bénéficier de l'adoption croissante des technologies blockchain et des applications décentralisées. Les perspectives de croissance restent positives, bien que des risques de volatilité subsistent. Solana est souvent considérée comme une alternative à Ethereum, avec des avantages en termes de vitesse et de coûts. L'objectif de croissance à long terme reste solide, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, Solana est perçu comme une plateforme blockchain innovante avec un potentiel de croissance significatif. Les avantages compétitifs de Solana, combinés à une adoption croissante, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, Solana devrait continuer à jouer un rôle central.</p>
     </div>
     
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
@@ -428,198 +434,216 @@
         <span style="color:#58a6ff;font-weight:700;font-size:1.1rem">GOOG</span>
         <span style="color:#8b949e;font-size:0.9rem">Alphabet</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">10EUR€ investi</span>
+        <span style="color:#3fb950;font-size:0.85rem;font-weight:600">10EUR&euro; investi</span>
       </div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-        <span style="color:#d29922;font-size:0.8rem;font-weight:500">● moyenne</span>
+        <span style="color:#d29922;font-size:0.8rem;font-weight:500"><svg width="8" height="8" viewBox="0 0 8 8" style="vertical-align:middle;margin-right:3px"><circle cx="4" cy="4" r="4" fill="#d29922"/></svg>moyenne</span>
         <span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;letter-spacing:0.5px">SURVEILLER</span>
       </div>
     </div>
     <div style="background:#0d1117;border-radius:10px;padding:14px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-around;flex-wrap:wrap;gap:12px">
-      <div style="text-align:center">
-        <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div>
-        <div style="color:#e6edf3;font-size:1.1rem;font-weight:800">290.44 USD</div>
-      </div>
+      <div style="text-align:center"><div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Prix actuel</div><div style="color:#e6edf3;font-size:1.1rem;font-weight:800">291.82 USD</div></div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Jour</div>
-    <div style="color:#8b949e;font-size:0.85rem;font-weight:700">0%</div>
+    <div style="color:#3fb950;font-size:0.85rem;font-weight:700">+0.48%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Semaine</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-5.61%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-5.16%</div>
   </div>
       <div style="text-align:center">
     <div style="color:#8b949e;font-size:0.65rem;text-transform:uppercase;margin-bottom:2px">Mois</div>
-    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-7.18%</div>
+    <div style="color:#f85149;font-size:0.85rem;font-weight:700">-6.74%</div>
   </div>
     </div>
-    <div style="margin-bottom:12px"><span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600">🟡 Attendre</span></div>
+    <div style="margin-bottom:12px"><span style="background:#3d2e00;color:#d29922;padding:4px 12px;border-radius:20px;font-size:0.78rem;font-weight:600;display:inline-flex;align-items:center;gap:6px"><svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="#d29922"/></svg> Attendre</span></div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">📊 Court terme — Cette semaine</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Alphabet a connu une baisse de 5.61% cette semaine et de 7.18% ce mois-ci, ce qui indique une certaine volatilité. Les volumes d'échange sont restés stables, mais le sentiment des investisseurs est mitigé. Les niveaux de support se situent autour de 280 USD, tandis que la résistance est à 300 USD. Les nouvelles récentes concernant la concurrence dans le secteur technologique pourraient également influencer les performances à court terme. En conclusion, il est préférable de surveiller cette position avant de prendre une décision d'achat.</p>
+      <div style="color:#f0883e;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Court terme — Cette semaine</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">Alphabet a montré une légère hausse aujourd'hui, mais reste en baisse de 6.74% sur le mois. Le VIX élevé indique une volatilité accrue, ce qui pourrait influencer les performances d'Alphabet. Les nouvelles concernant les entreprises technologiques et leur résilience face aux tensions géopolitiques sont à surveiller. Les niveaux techniques montrent un support autour de 290 USD, ce qui pourrait être un bon point d'entrée pour de nouveaux investisseurs. Les volumes d'échange sont en hausse, indiquant un intérêt croissant des investisseurs. Comparé aux performances des semaines précédentes, Alphabet semble sous pression.</p>
     </div>
     <div style="background:#0d1117;border-radius:8px;padding:14px;margin-bottom:10px">
-      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">🌍 Long terme — Fondamentaux</div>
-      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, Alphabet reste un acteur clé dans le secteur technologique, avec des perspectives de croissance solides. Les risques incluent une concurrence accrue et des préoccupations réglementaires. Cependant, l'entreprise est bien positionnée pour bénéficier de l'adoption croissante des technologies numériques. L'objectif de croissance à long terme reste positif, avec des prévisions de rendements intéressants.</p>
+      <div style="color:#56d364;font-size:0.75rem;font-weight:700;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.5px">Long terme — Fondamentaux</div>
+      <p style="color:#c9d1d9;margin:0;font-size:0.85rem;line-height:1.6">À long terme, Alphabet reste un leader dans le secteur technologique avec des perspectives de croissance solides. Les avantages compétitifs d'Alphabet, combinés à une innovation continue, soutiennent une tendance haussière sur 5-10 ans. Dans une stratégie DCA diversifiée, Alphabet devrait continuer à jouer un rôle central.</p>
     </div>
     
   </div>
+    <footer>Généré par n8n + GPT-4o-mini &bull; Prix : Yahoo Finance &bull; VIX : CBOE via Yahoo Finance &bull; News : NewsAPI, Investing.com, Bloomberg, Reuters, CoinDesk, CNBC, MarketWatch</footer>
   </div>
 
-  <div class="section">
-    <div class="section-title">🔭 Opportunités du Marché</div>
+  <div id="page-opportunites" class="page">
+    <div class="page-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg> Opportunités du Marché</div>
     <div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
       <div>
-        <span style="color:#d2a8ff;font-weight:700;font-size:1.1rem">ARM</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Arm Holdings</span>
-        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-      </div>
-      <span style="color:#d29922;font-weight:600">Risque: moyen</span>
-    </div>
-    <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-      <span style="background:#1f3a5f;color:#58a6ff;padding:4px 10px;border-radius:8px;font-size:0.8rem">Événement macro favorable</span>
-      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">⏱ moyen terme (1-6 mois)</span>
-    </div>
-    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Double upgrade par JPMorgan</p>
-    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.6">Arm Holdings a récemment été doublement mise à niveau par JPMorgan, ce qui a entraîné une hausse de 13% de son action en préouverture. Cette mise à niveau est basée sur des prévisions de revenus solides pour leur nouveau chip, qui devrait générer 15 milliards de dollars de revenus d'ici 2031. Les investisseurs doivent considérer cette opportunité, car la demande pour les technologies de semi-conducteurs continue de croître. Les niveaux de prix importants se situent autour de 50 USD pour le support et 60 USD pour la résistance. Les risques incluent une concurrence accrue dans le secteur des semi-conducteurs, mais la position d'Arm est forte. Cette opportunité est adaptée aux investisseurs cherchant à capitaliser sur la croissance à moyen terme.</p>
-  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
-      <div>
-        <span style="color:#d2a8ff;font-weight:700;font-size:1.1rem">RBLX</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Roblox</span>
+        <span style="color:#d2a8ff;font-weight:700;font-size:1.1rem">AAPL</span>
+        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Apple Inc.</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
       </div>
       <span style="color:#d29922;font-weight:600">Risque: moyen</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
       <span style="background:#1f3a5f;color:#58a6ff;padding:4px 10px;border-radius:8px;font-size:0.8rem">Baisse = bon point d'entree DCA</span>
-      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">⏱ court terme (1-4 semaines)</span>
+      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">court terme (1-4 semaines)</span>
     </div>
-    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Baisse significative</p>
-    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.6">Roblox a récemment connu une baisse significative de son action, offrant un point d'entrée intéressant pour les investisseurs DCA. Les préoccupations concernant la monétisation et la concurrence ont pesé sur le titre, mais les fondamentaux de l'entreprise restent solides. Les niveaux de support se situent autour de 25 USD, tandis que la résistance est à 30 USD. Les risques incluent une volatilité accrue, mais la position de Roblox dans le secteur des jeux en ligne reste forte. Cette opportunité est adaptée aux investisseurs cherchant à renforcer leur portefeuille à long terme.</p>
+    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Baisse = bon point d'entree DCA</p>
+    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.6">Apple a récemment connu une baisse significative de ses actions, offrant un point d'entrée attractif pour les investisseurs DCA. Les résultats financiers récents montrent une croissance continue des revenus, malgré les tensions géopolitiques. Les analystes estiment que le potentiel de croissance à long terme d'Apple reste solide, soutenu par l'innovation et l'expansion de ses services. Les niveaux techniques montrent un support autour de 150 USD, ce qui pourrait être un bon point d'entrée. Les risques incluent la dépendance à la chaîne d'approvisionnement et la concurrence accrue. Cette opportunité est adaptée aux investisseurs à long terme cherchant à renforcer leur position dans un leader du marché.</p>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
       <div>
         <span style="color:#d2a8ff;font-weight:700;font-size:1.1rem">TSLA</span>
-        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Tesla</span>
+        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Tesla Inc.</span>
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
       </div>
       <span style="color:#d29922;font-weight:600">Risque: moyen</span>
     </div>
     <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
-      <span style="background:#1f3a5f;color:#58a6ff;padding:4px 10px;border-radius:8px;font-size:0.8rem">Événement macro favorable</span>
-      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">⏱ moyen terme (1-6 mois)</span>
+      <span style="background:#1f3a5f;color:#58a6ff;padding:4px 10px;border-radius:8px;font-size:0.8rem">Baisse = bon point d'entree DCA</span>
+      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">court terme (1-4 semaines)</span>
     </div>
-    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Nouveau produit à venir</p>
-    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.6">Tesla s'apprête à lancer un nouveau modèle de véhicule électrique, ce qui pourrait stimuler la demande et les ventes. Les actions de Tesla ont connu une volatilité récente, mais le lancement de nouveaux produits pourrait renforcer la confiance des investisseurs. Les niveaux de support se situent autour de 600 USD, tandis que la résistance est à 700 USD. Les risques incluent une concurrence accrue dans le secteur des véhicules électriques, mais la position de Tesla reste forte. Cette opportunité est adaptée aux investisseurs cherchant à capitaliser sur la croissance à moyen terme.</p>
+    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Baisse = bon point d'entree DCA</p>
+    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.6">Tesla a récemment connu une forte baisse de ses actions, ce qui pourrait représenter une opportunité d'achat pour les investisseurs DCA. Les résultats financiers montrent une croissance continue des ventes, malgré les défis de production. Les analystes estiment que le potentiel de croissance à long terme de Tesla reste solide, soutenu par l'innovation dans les véhicules électriques. Les niveaux techniques montrent un support autour de 600 USD, ce qui pourrait être un bon point d'entrée. Les risques incluent la concurrence accrue et les fluctuations des coûts des matières premières. Cette opportunité est adaptée aux investisseurs à long terme cherchant à renforcer leur position dans un leader du marché.</p>
+  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:12px;padding:20px;margin-bottom:12px">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+      <div>
+        <span style="color:#d2a8ff;font-weight:700;font-size:1.1rem">AMZN</span>
+        <span style="color:#8b949e;margin-left:8px;font-size:0.9rem">Amazon.com Inc.</span>
+        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
+      </div>
+      <span style="color:#d29922;font-weight:600">Risque: moyen</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <span style="background:#1f3a5f;color:#58a6ff;padding:4px 10px;border-radius:8px;font-size:0.8rem">Baisse = bon point d'entree DCA</span>
+      <span style="background:#21262d;color:#8b949e;padding:4px 10px;border-radius:8px;font-size:0.8rem">court terme (1-4 semaines)</span>
+    </div>
+    <p style="color:#f0883e;font-weight:600;margin:6px 0;font-size:0.85rem">Baisse = bon point d'entree DCA</p>
+    <p style="color:#c9d1d9;margin:4px 0 0;font-size:0.85rem;line-height:1.6">Amazon a récemment connu une baisse significative de ses actions, offrant un point d'entrée attractif pour les investisseurs DCA. Les résultats financiers montrent une croissance continue des revenus, malgré les défis logistiques. Les analystes estiment que le potentiel de croissance à long terme d'Amazon reste solide, soutenu par l'expansion de ses services et de son infrastructure. Les niveaux techniques montrent un support autour de 2800 USD, ce qui pourrait être un bon point d'entrée. Les risques incluent la concurrence accrue et les fluctuations des coûts des matières premières. Cette opportunité est adaptée aux investisseurs à long terme cherchant à renforcer leur position dans un leader du marché.</p>
   </div>
+    <footer>Généré par n8n + GPT-4o-mini &bull; Prix : Yahoo Finance &bull; VIX : CBOE via Yahoo Finance &bull; News : NewsAPI, Investing.com, Bloomberg, Reuters, CoinDesk, CNBC, MarketWatch</footer>
   </div>
 
-  <div class="section">
-    <div class="section-title">📰 Résumé des News</div>
+  <div id="page-news" class="page">
+    <div class="page-title"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"></path><line x1="10" y1="6" x2="18" y2="6"></line><line x1="10" y1="10" x2="18" y2="10"></line><line x1="10" y1="14" x2="14" y2="14"></line></svg> Résumé des News</div>
     <div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.wsj.com/business/deals/estee-lauder-in-talks-to-acquire-spains-puig-to-create-global-beauty-giant-28c376d3" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Estée Lauder in Talks to Acquire Spain’s Puig to Create Global Beauty Giant</a>
-      </div>
-      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">HAUTE</span>
-      </div>
-    </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Estée Lauder est en pourparlers pour acquérir Puig, une entreprise espagnole valorisée à environ 10 milliards de dollars, connue pour ses marques comme Carolina Herrera et Charlotte Tilbury. Cette acquisition pourrait créer un géant mondial de la beauté, renforçant la position d'Estée Lauder sur le marché. Les analystes estiment que cette fusion pourrait générer des synergies significatives et élargir le portefeuille de produits d'Estée Lauder. Les actions d'Estée Lauder pourraient bénéficier d'une hausse de la demande pour les produits de beauté, surtout dans un contexte où les consommateurs reviennent vers les achats de luxe après la pandémie. Les implications pour le marché des actions sont positives, car cela pourrait stimuler la confiance des investisseurs dans le secteur de la beauté. À court terme, les actions d'Estée Lauder pourraient voir une volatilité accrue en raison des spéculations autour de cette acquisition.</p>
-    <a href="https://www.wsj.com/business/deals/estee-lauder-in-talks-to-acquire-spains-puig-to-create-global-beauty-giant-28c376d3" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
-  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
-      <div style="flex:1;min-width:200px">
-        <a href="https://www.cnbc.com/2026/03/23/apollo-private-credit-fund-gives-investors-only-45percent-of-requested-withdrawals.html" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Apollo gives investors only 45% of requested withdrawals from $15 billion private credit fund</a>
-      </div>
-      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-        <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">HAUTE</span>
-      </div>
-    </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Apollo a annoncé qu'il ne pouvait distribuer que 45% des retraits demandés par les investisseurs de son fonds de crédit privé de 15 milliards de dollars, ce qui reflète des tensions croissantes dans le secteur du crédit privé. Cette situation est exacerbée par des inquiétudes concernant la qualité des prêts accordés à des entreprises technologiques. Les investisseurs pourraient devenir plus prudents face à la montée des défauts de paiement dans ce secteur. Les actions d'Apollo et d'autres sociétés de crédit privé pourraient subir une pression à la baisse à court terme. Les analystes recommandent de surveiller les tendances des retraits et les performances des fonds de crédit privé, car cela pourrait signaler des problèmes plus larges dans le marché du crédit. À moyen terme, cette situation pourrait inciter les investisseurs à réévaluer leurs allocations d'actifs dans le crédit privé.</p>
-    <a href="https://www.cnbc.com/2026/03/23/apollo-private-credit-fund-gives-investors-only-45percent-of-requested-withdrawals.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
-  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
-    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
-      <div style="flex:1;min-width:200px">
-        <a href="https://apnews.com/article/iran-war-australia-international-energy-agency-f1e7ccd313263fd63e695f43a2e68165" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">International Energy Agency head says global economy faces ‘major, major threat’ from Iran war</a>
+        <a href="https://www.cbsnews.com/live-updates/iran-war-trump-tehran-denies-talks-israel-oil-prices-stocks-react/" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Live Updates: Iran war rages as oil and stock markets grapple with conflicting messages from Trump and Tehran</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
         <span style="background:#8b949e22;color:#8b949e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Global</span>
         <span style="background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">HAUTE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Le directeur de l'Agence internationale de l'énergie a averti que l'économie mondiale fait face à une 'menace majeure' en raison de la guerre en Iran. Cette déclaration souligne les risques croissants pour les marchés de l'énergie et l'économie mondiale. Les investisseurs doivent être conscients des implications potentielles sur les prix du pétrole et du gaz, ainsi que sur les chaînes d'approvisionnement. À court terme, les marchés pourraient connaître une volatilité accrue en raison des incertitudes géopolitiques. À moyen terme, les tensions au Moyen-Orient pourraient continuer à peser sur la croissance économique mondiale et les marchés financiers.</p>
-    <a href="https://apnews.com/article/iran-war-australia-international-energy-agency-f1e7ccd313263fd63e695f43a2e68165" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Les marchés boursiers et pétroliers sont en proie à des fluctuations importantes alors que les messages contradictoires de Trump et de Téhéran sur les négociations de paix créent de l'incertitude. Les tensions dans le détroit d'Ormuz, crucial pour le transport du pétrole, continuent d'affecter les prix. Les actions ont montré des signes de volatilité, avec des investisseurs réagissant aux nouvelles de la guerre. Les analystes soulignent que cette situation pourrait entraîner des opportunités d'achat à bas prix pour les investisseurs à long terme. Les secteurs de l'énergie et des technologies sont particulièrement touchés par cette instabilité. À court terme, les marchés pourraient continuer à fluctuer en fonction des nouvelles concernant le conflit. Les perspectives à moyen terme restent incertaines, mais une résolution pourrait stabiliser les marchés.</p>
+    <a href="https://www.cbsnews.com/live-updates/iran-war-trump-tehran-denies-talks-israel-oil-prices-stocks-react/" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.cnbc.com/2026/03/25/recession-odds-climb-on-wall-street-as-economy-shows-cracks-beneath-the-surface.html" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Recession odds climb on Wall Street as economy shows cracks beneath the surface</a>
+        <a href="https://www.bbc.com/news/articles/cg547ljepvzo" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Oil traders bet millions ahead of Trump's Iran talks post</a>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+        <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
+        <span style="background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">HAUTE</span>
+      </div>
+    </div>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Les traders de pétrole parient des millions sur les résultats des négociations entre les États-Unis et l'Iran, anticipant une possible stabilisation des prix du pétrole. Les données du marché montrent une augmentation des échanges de pétrole avant l'annonce de Trump concernant le report des attaques. Cette spéculation pourrait influencer les prix à court terme, avec des implications pour les actions des entreprises énergétiques. Les analystes estiment que la volatilité des prix du pétrole pourrait offrir des opportunités d'achat pour les investisseurs à long terme. Les perspectives à court terme sont marquées par une forte incertitude, tandis que les implications à moyen terme dépendent de l'évolution des négociations.</p>
+    <a href="https://www.bbc.com/news/articles/cg547ljepvzo" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
+  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+      <div style="flex:1;min-width:200px">
+        <a href="https://www.bloomberg.com/news/articles/2026-03-24/stock-market-today-dow-s-p-live-updates" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Stocks Rise, Oil Falls as Truce Prospects Weighed: Markets Wrap</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
         <span style="background:#8b949e22;color:#8b949e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Global</span>
         <span style="background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">HAUTE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Les économistes augmentent leurs prévisions de récession alors que des signes de faiblesse apparaissent dans l'économie américaine. Les inquiétudes concernant le marché du travail et les tensions géopolitiques exacerbent ces craintes. Les investisseurs doivent être prudents et surveiller les indicateurs économiques clés, car une récession pourrait avoir des implications significatives pour les marchés boursiers. À court terme, les actions pourraient subir une pression à la baisse si les craintes de récession se concrétisent. À moyen terme, les entreprises pourraient faire face à des défis croissants, ce qui pourrait affecter les bénéfices et les valorisations.</p>
-    <a href="https://www.cnbc.com/2026/03/25/recession-odds-climb-on-wall-street-as-economy-shows-cracks-beneath-the-surface.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Les actions ont augmenté tandis que les prix du pétrole ont chuté, les investisseurs pesant les perspectives d'un cessez-le-feu entre les États-Unis et l'Iran. Cette dynamique a entraîné des mouvements significatifs sur les marchés, avec des implications pour les secteurs de l'énergie et des technologies. Les analystes notent que la volatilité actuelle pourrait offrir des opportunités d'achat pour les investisseurs à long terme. Les perspectives à court terme restent incertaines, mais une résolution du conflit pourrait stabiliser les marchés. Les investisseurs doivent surveiller de près les développements géopolitiques pour ajuster leurs stratégies.</p>
+    <a href="https://www.bloomberg.com/news/articles/2026-03-24/stock-market-today-dow-s-p-live-updates" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.bloomberg.com/news/articles/2026-03-23/fcc-bans-all-foreign-made-routers-citing-security-risks" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">FCC Bans Wireless Router Imports, Citing Security Concerns</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-03-25/morgan-stanley-s-wilson-sees-s-p-profit-boom-despite-iran-war" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Morgan Stanley’s Wilson Sees S&P Profit Boom Despite Iran War</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
         <span style="background:#58a6ff22;color:#58a6ff;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock</span>
-        <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MOYENNE</span>
+        <span style="background:#f8514922;color:#f85149;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">HAUTE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">La FCC a ordonné l'interdiction de l'importation de nouveaux modèles de routeurs sans fil étrangers, invoquant des préoccupations de sécurité nationale. Cette décision pourrait avoir des répercussions sur les entreprises technologiques qui dépendent de l'importation de ces appareils. Les actions des entreprises de technologie pourraient être affectées, car cela pourrait entraîner des pénuries de produits et des augmentations de coûts. Les analystes estiment que cette mesure pourrait également inciter les entreprises à investir davantage dans la production locale. À moyen terme, cela pourrait stimuler le secteur technologique américain, mais également augmenter les tensions commerciales avec d'autres pays. Les investisseurs doivent surveiller l'impact de cette décision sur les chaînes d'approvisionnement et les coûts des entreprises.</p>
-    <a href="https://www.bloomberg.com/news/articles/2026-03-23/fcc-bans-all-foreign-made-routers-citing-security-risks" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Morgan Stanley prévoit une augmentation des bénéfices du S&P 500 malgré les tensions en Iran, soulignant la résilience des entreprises américaines. Cette perspective pourrait rassurer les investisseurs à long terme, même en période d'incertitude. Les analystes estiment que la croissance des bénéfices pourrait compenser les impacts négatifs des tensions géopolitiques. À court terme, les marchés pourraient continuer à fluctuer, mais les perspectives à moyen terme semblent positives pour les actions américaines.</p>
+    <a href="https://www.bloomberg.com/news/articles/2026-03-25/morgan-stanley-s-wilson-sees-s-p-profit-boom-despite-iran-war" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.ft.com/content/1171d623-3709-4f6e-8ded-a5df4ec57696?syn-25a6b1a6\u003d1" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Traders placed $580mn in oil bets ahead of Donald Trump’s social media post on Iran talks</a>
+        <a href="https://www.cnbc.com/2026/03/24/gold-price-forecast-10000-expectations-in-spite-of-bear-market.html" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Gold at $10,000? Market watchers hold firm on forecasts despite bullion bear market slide</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MOYENNE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Des traders ont placé 580 millions de dollars de paris sur le pétrole juste avant qu'un message de Donald Trump sur les négociations avec l'Iran ne soit publié. Cette activité a suscité des spéculations sur l'impact potentiel des discussions sur les prix du pétrole. Les contrats Brent et WTI ont connu une volatilité accrue, avec des mouvements de prix significatifs. Les investisseurs doivent être attentifs aux développements géopolitiques, car ils peuvent influencer les marchés pétroliers. À court terme, les fluctuations des prix du pétrole pourraient affecter les actions des entreprises énergétiques. Les analystes estiment que les tensions au Moyen-Orient continueront d'affecter les marchés de l'énergie dans les semaines à venir.</p>
-    <a href="https://www.ft.com/content/1171d623-3709-4f6e-8ded-a5df4ec57696?syn-25a6b1a6\u003d1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Malgré une forte baisse des prix de l'or, certains analystes maintiennent leurs prévisions ambitieuses, prévoyant que l'or pourrait atteindre 10 000 USD à long terme. La récente tendance baissière a été attribuée à la volatilité des marchés et aux tensions géopolitiques. Les investisseurs sont divisés sur la direction future des prix, certains voyant une opportunité d'achat alors que d'autres restent prudents. Les implications pour les investisseurs particuliers incluent la nécessité d'une stratégie DCA pour lisser les fluctuations. À court terme, les prix de l'or pourraient continuer à être influencés par les développements géopolitiques, tandis qu'à moyen terme, la demande pour l'or comme valeur refuge pourrait augmenter.</p>
+    <a href="https://www.cnbc.com/2026/03/24/gold-price-forecast-10000-expectations-in-spite-of-bear-market.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.marketwatch.com/story/why-golds-plunge-into-a-bear-market-is-a-good-signal-for-stocks-according-to-morgan-stanley-bacf5d35" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Why gold’s plunge into a bear market is a good signal for stocks, according to Morgan Stanley</a>
+        <a href="https://www.coindesk.com/markets/2026/03/25/bitcoin-steadies-above-usd71-000-as-oil-drops-below-usd100-on-u-s-15-point-plan-to-end-iran-war" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Bitcoin steadies above $71,000 as oil falls below $100 after U.S. drafts 15-point Iran peace plan</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-        <span style="background:#8b949e22;color:#8b949e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock/Commodity</span>
+        <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MOYENNE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Morgan Stanley a déclaré que la récente chute de l'or dans un marché baissier pourrait signaler une opportunité pour les actions. Les analystes notent que la montée de l'or a été alimentée par des craintes géopolitiques, mais que son déclin pourrait indiquer un retour de la confiance des investisseurs dans les actions. Cette dynamique pourrait également être liée à des attentes de hausse des taux d'intérêt. Les investisseurs doivent surveiller les corrélations entre l'or et les actions, car elles pourraient influencer les décisions d'investissement. À court terme, les actions pourraient bénéficier d'une rotation des investissements de l'or vers les actions. À moyen terme, cette tendance pourrait se renforcer si les conditions économiques s'améliorent.</p>
-    <a href="https://www.marketwatch.com/story/why-golds-plunge-into-a-bear-market-is-a-good-signal-for-stocks-according-to-morgan-stanley-bacf5d35" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Le Bitcoin se stabilise au-dessus de 71 000 USD alors que les prix du pétrole chutent en dessous de 100 USD, suite à la proposition de paix des États-Unis. Cette dynamique montre une corrélation entre les marchés des cryptomonnaies et des matières premières. Les investisseurs en crypto doivent être attentifs aux développements géopolitiques, car ils peuvent influencer la volatilité des prix. Les perspectives à court terme pour le Bitcoin semblent positives, mais les risques demeurent en raison de l'incertitude mondiale. À moyen terme, la demande pour le Bitcoin pourrait augmenter en tant que valeur refuge.</p>
+    <a href="https://www.coindesk.com/markets/2026/03/25/bitcoin-steadies-above-usd71-000-as-oil-drops-below-usd100-on-u-s-15-point-plan-to-end-iran-war" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
   </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
       <div style="flex:1;min-width:200px">
-        <a href="https://www.bloomberg.com/news/articles/2026-03-24/stock-market-today-dow-s-p-live-updates" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Stocks Bounce as Oil Falls on Trump’s Peace Push: Markets Wrap</a>
+        <a href="https://www.bloomberg.com/news/articles/2026-03-25/franklin-templeton-debuts-etfs-that-trade-in-crypto-wallets-24-7" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Franklin Templeton Debuts ETFs That Trade in Crypto Wallets 24/7</a>
       </div>
       <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
-        <span style="background:#8b949e22;color:#8b949e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Stock/Commodity</span>
+        <span style="background:#f0883e22;color:#f0883e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Crypto</span>
         <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MOYENNE</span>
       </div>
     </div>
-    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Les actions ont rebondi alors que les prix du pétrole ont chuté suite aux efforts de l'administration Trump pour mettre fin à la guerre avec l'Iran. Ce développement a suscité un optimisme sur les marchés, entraînant une hausse des indices boursiers. Les investisseurs doivent surveiller l'évolution des négociations, car elles pourraient influencer les tendances du marché à court terme. Les analystes estiment que la dynamique actuelle pourrait se poursuivre si des progrès sont réalisés dans les discussions. À moyen terme, la stabilité des prix du pétrole pourrait soutenir la reprise des marchés boursiers.</p>
-    <a href="https://www.bloomberg.com/news/articles/2026-03-24/stock-market-today-dow-s-p-live-updates" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">📰 Lire l'article complet ↗</a>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Franklin Templeton lance des ETF qui se négocient 24/7 via des portefeuilles crypto, marquant une avancée significative dans l'intégration des actifs numériques dans les investissements traditionnels. Cette initiative pourrait attirer de nouveaux investisseurs vers les cryptomonnaies et les actifs numériques. Les implications pour le marché des ETF sont considérables, car cela pourrait changer la façon dont les investisseurs accèdent aux actifs numériques. À court terme, cette innovation pourrait stimuler l'intérêt pour les cryptomonnaies, tandis qu'à moyen terme, elle pourrait renforcer la légitimité des actifs numériques sur les marchés financiers.</p>
+    <a href="https://www.bloomberg.com/news/articles/2026-03-25/franklin-templeton-debuts-etfs-that-trade-in-crypto-wallets-24-7" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
+  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+      <div style="flex:1;min-width:200px">
+        <a href="https://www.bloomberg.com/news/articles/2026-03-25/us-import-prices-jump-most-since-2022-ahead-of-iran-war" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">US Import Prices Jumped by the Most Since 2022 Ahead of War</a>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+        <span style="background:#8b949e22;color:#8b949e;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Global</span>
+        <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MOYENNE</span>
+      </div>
+    </div>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">Les prix d'importation aux États-Unis ont augmenté de manière significative, reflétant une hausse des coûts avant le début du conflit en Iran. Cette augmentation pourrait avoir des implications pour l'inflation et les coûts des biens de consommation. Les analystes s'inquiètent de l'impact potentiel sur les marges bénéficiaires des entreprises et sur la consommation des ménages. À court terme, les marchés pourraient réagir à ces nouvelles, tandis qu'à moyen terme, les implications pour la politique monétaire pourraient être considérables.</p>
+    <a href="https://www.bloomberg.com/news/articles/2026-03-25/us-import-prices-jump-most-since-2022-ahead-of-iran-war" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
+  </div><div style="background:#161b22;border:1px solid #30363d;border-radius:10px;padding:16px 18px;margin-bottom:10px">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:8px">
+      <div style="flex:1;min-width:200px">
+        <a href="https://www.bloomberg.com/news/articles/2026-03-24/gold-holds-gain-after-reports-of-us-negotiations-to-end-iran-war" target="_blank" rel="noopener" style="color:#58a6ff;text-decoration:none;font-weight:700;font-size:0.95rem;line-height:1.4">Gold Extends Gains as Traders Gauge Viability of Ceasefire Talks</a>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+        <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">Commodity</span>
+        <span style="background:#d2992222;color:#d29922;padding:2px 8px;border-radius:10px;font-size:0.7rem;font-weight:600">MOYENNE</span>
+      </div>
+    </div>
+    <p style="color:#c9d1d9;margin:0 0 10px;font-size:0.85rem;line-height:1.6">L'or a prolongé ses gains alors que les traders évaluent la viabilité des pourparlers de cessez-le-feu. Cette dynamique pourrait signaler un regain d'intérêt pour l'or en tant que valeur refuge. Les investisseurs doivent surveiller de près les développements géopolitiques, car ils peuvent influencer les prix de l'or. À court terme, les perspectives semblent positives pour l'or, mais les risques demeurent en raison de l'incertitude mondiale. À moyen terme, la demande pour l'or pourrait augmenter si les tensions persistent.</p>
+    <a href="https://www.bloomberg.com/news/articles/2026-03-24/gold-holds-gain-after-reports-of-us-negotiations-to-end-iran-war" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;color:#58a6ff;text-decoration:none;font-size:0.82rem;font-weight:600;padding:6px 14px;border:1px solid #30363d;border-radius:8px;background:#0d2240">Lire l'article complet &#8599;</a>
   </div>
+    <footer>Généré par n8n + GPT-4o-mini &bull; Prix : Yahoo Finance &bull; VIX : CBOE via Yahoo Finance &bull; News : NewsAPI, Investing.com, Bloomberg, Reuters, CoinDesk, CNBC, MarketWatch</footer>
   </div>
-
-  <footer>
-    Généré par n8n + GPT-4o-mini • Prix : Yahoo Finance • VIX : CBOE via Yahoo Finance • News : NewsAPI, Investing.com, Bloomberg, Reuters, CoinDesk, CNBC, MarketWatch
-  </footer>
 </div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
 </body>
 </html>
